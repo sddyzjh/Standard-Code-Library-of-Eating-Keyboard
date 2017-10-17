@@ -3,7 +3,7 @@
 	下标从0开始
 	调用juanji(n,b,c)
 	P为模数
-	G不知道是啥
+	G是P的原根
 */
 const ll P=998244353;
 const ll G=3;
