@@ -1,0 +1,46 @@
+\subsection{常用概念}
+\subsection{映射}
+[injective] or [one-to-one] 函数值不重复 \par {[}surjective] or [onto] 值域都被取到 \par {[}bijective] or [one-to-one correspondence] 一一对应
+\subsection{反演}
+反演中心$O$,反演半径$r$,点$p$的反演点$p'$满足$|OP||OP'|=r^2$\par
+不经过反演中心的直线，反形为经过反演中心的圆\par
+不经过反演中心的圆，反形为圆，反演中心为这两个互为反形的圆的位似中心\par
+\subsection{弦图}
+设 $next(v)$ 表示 $N(v)$ 中最前的点 . 
+令 $w*$ 表示所有满足 $A \in B$ 的 $w$ 中最后的一个点 , 
+判断 $v \cup N(v)$ 是否为极大团 , 
+只需判断是否存在一个 $w \in w*$, 
+满足 $Next(w)=v$ 且 $|N(v)| + 1 \leq |N(w)|$ 即可 . 
+\subsection{五边形数}
+$
+    \prod_{n=1}^{\infty}{(1-x^{n})}=\sum_{n=0}^{\infty}{(-1)^{n}(1-x^{2n+1})x^{n(3n+1)/2}}
+$
+\subsection{重心}
+半径为 $r$ , 圆心角为 $\theta$ 的扇形重心与圆心的距离为 $\frac{4r\sin(\theta/2)}{3\theta}$ \par
+半径为 $r$ , 圆心角为 $\theta$ 的圆弧重心与圆心的距离为 $\frac{4r\sin^3(\theta/2)}{3(\theta-\sin(\theta))}$ \par
+\subsection{第二类 Bernoulli number}
+$B_m = 1 - \sum_{k=0}^{m-1}{\binom{m}{k}\frac{B_{k}}{m-k+1}}$\par
+$S_m(n) = \sum_{k=1}^{n}{k^{m}} = \frac{1}{m+1}\sum_{k=0}^{m}{\binom{m+1}{k}B_{k}n^{m+1-k}}$\par
+\subsection{Catalan 数}
+$C_n=\frac{1}{n+1}\binom{2n}{n}=\frac{(2n)!}{(n+1)!n!}$\par
+前20项:1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190\par
+\subsection{Stirling 数}
+第一类 :n 个元素的项目分作 k 个环排列的方法数目\par
+$s(n, k) = (-1)^{n+k}|s(n, k)|$\par
+$|s(n, 0)| =0$\par
+$|s(1, 1)| =1$\par
+$|s(n, k)| =|s(n-1, k-1)|+(n-1)*|s(n-1, k)|$\par
+第二类 :n 个元素的集定义 k 个等价类的方法数\par
+$    S(n,1)=S(n,n)=1$\par
+ $   S(n,k)=S(n-1,k-1)+k*S(n-1,k)$\par
+\subsection{三角公式}
+$\sin(a \pm b) = \sin a \cos b \pm \cos a \sin b$\par
+$\cos(a \pm b) = \cos a \cos b \mp \sin a \sin b$\par
+$\tan(a \pm b) = \frac{\tan(a)\pm\tan(b)}{1 \mp \tan(a)\tan(b)}$\par
+$\tan(a) \pm \tan(b) = \frac{\sin(a \pm b)}{\cos(a)\cos(b)}$\par
+$\sin(a) + \sin(b) = 2\sin(\frac{a + b}{2})\cos(\frac{a - b}{2})$\par
+$\sin(a) - \sin(b) = 2\cos(\frac{a + b}{2})\sin(\frac{a - b}{2})$\par
+$\cos(a) + \cos(b) = 2\cos(\frac{a + b}{2})\cos(\frac{a - b}{2})$\par
+$\cos(a) - \cos(b) = -2\sin(\frac{a + b}{2})\sin(\frac{a - b}{2})$\par
+$\sin(na) = n\cos^{n-1}a\sin a - \binom{n}{3}\cos^{n-3}a \sin^3a + \binom{n}{5}\cos^{n-5}a\sin^5a - \dots$\par
+$\cos(na) = \cos^{n}a - \binom{n}{2}\cos^{n-2}a \sin^2a + \binom{n}{4}\cos^{n-4}a\sin^4a - \dots$\par

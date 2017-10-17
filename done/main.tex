@@ -1,0 +1,267 @@
+\documentclass[a4paper]{article}
+%\setlength\paperheight {297mm}%
+%\setlength\paperwidth  {250mm}%
+\usepackage{listings}
+%\usepackage{CJK}
+\usepackage[UTF8]{ctex}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\setCJKmainfont{微软雅黑}
+\begin{document}
+\lstset{language=C++}          % Set your language (you can change the language for each code-block optionally)
+%\begin{CJK*}{UTF8}{song}
+\lstset{
+	basicstyle=\footnotesize,  				%字号
+	breaklines=true,						%自动换行
+	frame=single,						%背景框
+%	linewidth=14cm,
+%	xleftmargin=0.6\textwidth, xrightmargin=0.6\textwidth,
+	numbers=left,							%行号
+	tabsize=4,	
+	commentstyle=\color[rgb]{0.133,0.545,0.133},	%注释
+	%identifierstyle=\color{red},				%标识符
+	keywordstyle=\color[rgb]{0,0,1},			%关键字
+	numberstyle=\color[RGB]{0,192,192},			%数字
+	stringstyle=\color[rgb]{0.627,0.126,0.941},	%字符串
+%	literate=
+        %   *{\{}{{\textcolor{red}{\{}}}{1}
+       %     {\}}{{\textcolor{red}{\}}}}{1}
+      %      {[}{{\textcolor{red}{[}}}{1}
+     %       {]}{{\textcolor{red}{]}}}{1}
+    %        {(}{{\textcolor{red}{(}}}{1}
+   %         {)}{{\textcolor{red}{)}}}{1}
+  %          {;}{{\textcolor{red}{;}}}{1}
+ %           {,}{{\textcolor{red}{,}}}{1}
+%            {.}{{\textcolor{red}{.}}}{1}
+%            {+}{{\textcolor{red}{+}}}{1}
+%            {-}{{\textcolor{red}{-}}}{1}
+%            {*}{{\textcolor{red}{*}}}{1}
+%            {/}{{\textcolor{red}{/}}}{1}
+%            {=}{{\textcolor{red}{=}}}{1}
+%            {<}{{\textcolor{red}{<}}}{1}
+%            {>}{{\textcolor{red}{>}}}{1}
+%            {~}{{\textcolor{red}{~}}}{1}
+%            {!}{{\textcolor{red}{!}}}{1}
+%     		 {@}{{\textcolor{red}{@}}}{1}
+%            {\#}{{\textcolor{red}{\#}}}{1}
+%            {\$}{{\textcolor{red}{\$}}}{1}
+%            {\%}{{\textcolor{red}{\%}}}{1}
+%            {\^}{{\textcolor{red}{\^}}}{1}
+%            {\&}{{\textcolor{red}{\&}}}{1}
+}
+\newpage
+\begin{titlepage} % Suppresses headers and footers on the title page
+
+	\centering % Centre everything on the title page
+	
+	\scshape % Use small caps for all text on the title page
+	
+	\vspace*{\baselineskip} % White space at the top of the page
+	
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+	
+	\rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt} % Thick horizontal rule
+	\rule{\textwidth}{0.4pt} % Thin horizontal rule
+	
+	\vspace{0.75\baselineskip} % Whitespace above the title
+	
+	{\LARGE Standard Code Library\\ of\\ HUST Affiliated Kindergarten\\} % Title
+	
+	\vspace{0.75\baselineskip} % Whitespace below the title
+	
+	\rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt} % Thin horizontal rule
+	\rule{\textwidth}{1.6pt} % Thick horizontal rule
+	
+	\vspace{2\baselineskip} % Whitespace after the title block
+	
+	%------------------------------------------------
+	%	Subtitle
+	%------------------------------------------------
+	
+	Verson 1.1 % Subtitle or further description
+	
+	\vspace*{3\baselineskip} % Whitespace under the subtitle
+	
+	%------------------------------------------------
+	%	Editor(s)
+	%------------------------------------------------
+	
+	Edited By
+	
+	\vspace{0.5\baselineskip} % Whitespace before the editors
+	
+	{\protect sddyzjh \\ DragoonKiller \\ dreactor \\} % Editor list
+	
+	\vspace{0.5\baselineskip} % Whitespace below the editor list
+	
+	\textit{Huazhong University of Science and Technology} % Editor affiliation
+	
+	\vfill % Whitespace between editor names and publisher logo
+	
+	%------------------------------------------------
+	%	Publisher
+	%------------------------------------------------
+	
+	2017.09.01 % Publication year
+	
+
+\end{titlepage}
+%remove leading numbers in table of contents
+\setcounter{secnumdepth}{0}
+
+\tableofcontents
+\newpage
+%\section{计算几何}
+%\subsection{基本}
+%%\begin{center}
+%\lstinputlisting[language=C++]{calculategeometry/几何通用.cpp}
+%%\end{center}
+%\subsection{判断点在凸多边形内}
+%\lstinputlisting[language=C++]{calculategeometry/判断点在凸多边形内.cpp}
+%\subsection{凸包}
+%\lstinputlisting[language=C++]{calculategeometry/凸包.cpp}
+%\subsection{旋转卡壳}
+%\lstinputlisting[language=C++]{calculategeometry/旋转卡壳.cpp}
+%\subsection{最小覆盖圆}
+%\lstinputlisting[language=C++]{calculategeometry/最小覆盖圆.cpp}
+%\section{数据结构}
+%\subsection{KD树}
+%\lstinputlisting[language=C++]{datastructure/KD树.cpp}
+%\subsection{表达式解析}
+%\lstinputlisting[language=C++]{datastructure/表达式解析.cpp}
+%\subsection{Splay}
+%\lstinputlisting[language=C++]{datastructure/Splay.cpp}
+%\subsection{并查}
+%\lstinputlisting[language=C++]{datastructure/并查.cpp}
+%\subsection{线段树}
+%\lstinputlisting[language=C++]{datastructure/线段树.cpp}
+%\subsection{可持久化线段树}
+%\lstinputlisting[language=C++]{datastructure/可持久化线段树.cpp}
+%\subsection{轻重边剖分}
+%\lstinputlisting[language=C++]{datastructure/轻重边剖分.cpp}
+%\subsection{树状数组}
+%\lstinputlisting[language=C++]{datastructure/树状数组.cpp}
+%\subsection{左偏树}
+%\lstinputlisting[language=C++]{datastructure/左偏树.cpp}
+%\subsection{手写bitset}
+%\lstinputlisting[language=C++]{datastructure/手写bitset.cpp}
+%\section{动态规划}
+%\subsection{插头DP}
+%\lstinputlisting[language=C++]{dp/插头dp.cpp}
+%\subsection{概率DP}
+%\lstinputlisting[language=C++]{dp/概率dp.cpp}
+%\subsection{数位DP}
+%\lstinputlisting[language=C++]{dp/数位dp.cpp}
+%\subsection{四边形DP}
+%\lstinputlisting[language=C++]{dp/四边形dp.cpp}
+%\subsection{斜率DP}
+%\lstinputlisting[language=C++]{dp/斜率dp.cpp}
+%\subsection{状压DP}
+%\lstinputlisting[language=C++]{dp/状压dp.cpp}
+%\subsection{最长上升子序列}
+%\lstinputlisting[language=C++]{dp/最长上升子序列.cpp}
+%\section{图论}
+%\subsection{Tarjan有向图强连通分量}
+%\lstinputlisting[language=C++]{graphtheory/Tarjan有向图强连通分量.cpp}
+%\subsection{最大团}
+%\lstinputlisting[language=C++]{graphtheory/最大团.cpp}
+%\subsection{最大流Dinic}
+%\lstinputlisting[language=C++]{graphtheory/最大流Dinic.cpp}
+%\subsection{spfa费用流}
+%\lstinputlisting[language=C++]{graphtheory/spfa费用流.cpp}
+%\subsection{zkw费用流}
+%\lstinputlisting[language=C++]{graphtheory/zkw费用流.cpp}
+%\subsection{倍增LCA}
+%\lstinputlisting[language=C++]{graphtheory/倍增LCA.cpp}
+%\subsection{堆优化dijkstra}
+%\lstinputlisting[language=C++]{graphtheory/堆优化dijkstra.cpp}
+%\subsection{矩阵树定理}
+%\lstinputlisting[language=C++]{graphtheory/矩阵树定理.cpp}
+%\subsection{best's therom}
+%\lstinputlisting[language=C++]{graphtheory/best_therom.cpp}
+%\subsection{平面欧几里得距离最小生成树}
+%\lstinputlisting[language=C++]{graphtheory/平面欧几里得距离最小生成树.cpp}
+%\subsection{最小度限制生成树}
+%\lstinputlisting[language=C++]{graphtheory/最小度限制生成树.cpp}
+%\subsection{最优比率生成树}
+%\lstinputlisting[language=C++]{graphtheory/最优比率生成树.cpp}
+%\subsection{点分治}
+%\lstinputlisting[language=C++]{graphtheory/点分治.cpp}
+%\subsection{k短路可持久化堆}
+%\lstinputlisting[language=C++]{graphtheory/k短路可持久化堆.cpp}
+\section{数学}
+\subsection{常用公式}
+\subsection{积性函数}
+$\sigma_k(n) = \Sigma_{d|n}d^k$表示$n$的约数的$k$次幂和\par
+$\sigma_k(n)=\Pi_{i=1}^{k}\frac{(p_i^{a_i+1})^k-1}{p_i^k-1}$\par
+$\varphi (n) = \Sigma_{i=1}^{n}[(n,i)=1]=\Pi_{i=1}^{k}(1-\frac{1}{p_i})$\par
+$\varphi (p^k) = (p-1)p^{k-1}$\par
+$\Sigma_{d|n} \varphi (n)=n\rightarrow \varphi(n)=n-\Sigma_{d|n,d<n}$\par
+$n\geq 2$时$\varphi(n)$为偶数\par 
+$\mu(n)=\left\{
+                \begin{array}{ll}
+                  0 \quad \quad $有平方因子$\\
+                  (-1)^t \quad n=\Pi_{i=1}^{t}p_i
+                \end{array}
+              \right.
+$\par
+$[n=1]=\Sigma_{d|n}\mu(d)$排列组合后二项式定理转换即可证明\par
+$n=\Sigma_{d|n}\varphi(d)$将$\frac{i}{n}(1\leq i\leq n)$化为最简分数统计个数即可证明\par
+\subsection{莫比乌斯反演}
+$F(n)=\sum_{d|n}f(d)\Rightarrow f(n)=\sum_{d|n}\mu(d)*F(\frac{n}{d})$\par
+$F(n)=\sum_{n|d}f(d)\Rightarrow f(n)=\sum_{n|d}\mu(\frac{n}{d})*F(d)$\par
+$f(n)=\sum_{d|n}\phi(d)\Rightarrow \phi(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})=\sum_{d|n}\mu(d)\frac{n}{d}$\par
+\subsection{常用等式}
+不知道有什么用\par
+$\sum_{d|N}\phi(d)=N$\par
+$\sum_{i\leq N}i*[(i,N)=1]=\frac{N*\phi(N)}{2}$\par
+$\sum_{d|N}\frac{\mu(d)}{d}=\frac{\phi(N)}{N}$\par
+常用代换\par
+$\sum_{d|N}\mu(d)=[N=1]$\par
+考虑每个数的贡献\par
+$\sum_{i\leq N}\lfloor \frac{N}{i}\rfloor=\sum_{i\leq N}d(i)$\par
+
+%\subsection{矩阵乘法快速幂}
+%\lstinputlisting[language=C++]{math/矩阵乘法快速幂.cpp}
+%\subsection{中国剩余定理}
+%\lstinputlisting[language=C++]{math/中国剩余定理.cpp}
+%\subsection{线性筛}
+%\lstinputlisting[language=C++]{math/线性筛.cpp}
+%\subsection{线性基}
+%\lstinputlisting[language=C++]{math/线性基.cpp}
+%\subsection{整数卷积NTT}
+%\lstinputlisting[language=C++]{math/整数卷积NTT.cpp}
+%\section{字符串}
+%\subsection{KMP}
+%\lstinputlisting[language=C++]{string/KMP.cpp}
+%\subsection{扩展KMP}
+%\lstinputlisting[language=C++]{string/扩展KMP.cpp}
+%\subsection{Manacher}
+%\lstinputlisting[language=C++]{string/Manacher回文串.cpp}
+%\subsection{Trie树}
+%\lstinputlisting[language=C++]{string/Trie树.cpp}
+%\subsection{AC自动机}
+%\lstinputlisting[language=C++]{string/AC自动机.cpp}
+%\subsection{后缀数组-DC3}
+%\lstinputlisting[language=C++]{string/后缀数组-DC3.cpp}
+%\subsection{后缀数组-倍增法}
+%\lstinputlisting[language=C++]{string/后缀数组-倍增法.cpp}
+%\subsection{后缀自动机}
+%\lstinputlisting[language=C++]{string/后缀自动机.cpp}
+\section{杂项}
+\subsection{测速}
+%\lstinputlisting[language=C++]{others/chrono.cpp}
+\subsection{读入挂}
+%\lstinputlisting[language=C++]{others/fread.cpp}
+%\subsection{日期公式}
+%\lstinputlisting[language=C++]{others/date.cpp}
+%\subsection{快速乘}
+%\lstinputlisting[language=C++]{others/快速乘.cpp}
+%\subsection{模拟退火}
+%\lstinputlisting[language=C++]{others/模拟退火.cpp}
+\input{others/综合.tex}
+
+%\end{CJK*}
+\end{document}
