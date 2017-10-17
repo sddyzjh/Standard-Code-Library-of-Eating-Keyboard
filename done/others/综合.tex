@@ -21,9 +21,14 @@ $
 \subsection{第二类 Bernoulli number}
 $B_m = 1 - \sum_{k=0}^{m-1}{\binom{m}{k}\frac{B_{k}}{m-k+1}}$\par
 $S_m(n) = \sum_{k=1}^{n}{k^{m}} = \frac{1}{m+1}\sum_{k=0}^{m}{\binom{m+1}{k}B_{k}n^{m+1-k}}$\par
+\subsection{Fibonacci 数}
+$F_n=\frac{\varphi^{n}-(-\varphi)^{-n}}{\sqrt{5}},\varphi=\frac{1+\sqrt{5}}{2}$\par
+$F_n=\lfloor \frac{\varphi^n}{\sqrt{5}}+\frac{1}{2}\rfloor$
 \subsection{Catalan 数}
+$C_{n+1}=\frac{2(2n+1)}{n+2}C_n$\par
 $C_n=\frac{1}{n+1}\binom{2n}{n}=\frac{(2n)!}{(n+1)!n!}$\par
 前20项:1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, 208012, 742900, 2674440, 9694845, 35357670, 129644790, 477638700, 1767263190\par
+所有的奇卡塔兰数$C_n$都满足 $\displaystyle n=2^{k}-1$。所有其他的卡塔兰数都是偶数
 \subsection{Stirling 数}
 第一类 :n 个元素的项目分作 k 个环排列的方法数目\par
 $s(n, k) = (-1)^{n+k}|s(n, k)|$\par
