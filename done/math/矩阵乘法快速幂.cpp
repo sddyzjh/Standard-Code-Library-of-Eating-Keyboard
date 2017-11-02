@@ -19,10 +19,10 @@ mat cheng(const mat &a, const mat &b){
 }
 mat pmat(mat a, ll k){
 	mat i;
-	i.n = i.m = MATN;
+	i.n = i.m = a.n;
 	SET(i.c,0);
-	Rep(i,MATN)
-		i.c[i][i] = 1;
+	Rep(j,a.n)
+		i.c[j][j] = 1;
 	while(k){
 		if(k&1)
 			i=cheng(i,a);

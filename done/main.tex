@@ -1,11 +1,15 @@
-\documentclass[a4paper]{article}
+\documentclass[UTF8]{ctexart}
+%\documentclass[a4paper]{article}
 %\setlength\paperheight {297mm}%
 %\setlength\paperwidth  {250mm}%
 \usepackage{listings}
 %\usepackage{CJK}
-\usepackage[UTF8]{ctex}
+%\usepackage[UTF8]{ctex}
 \usepackage{xcolor}
 \usepackage{amsmath}
+\usepackage{geometry}
+%\geometry{papersize={297mm,250mm}}
+\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
 \setCJKmainfont{微软雅黑}
 \begin{document}
 \lstset{language=C++}          % Set your language (you can change the language for each code-block optionally)
@@ -80,7 +84,7 @@
 	%	Subtitle
 	%------------------------------------------------
 	
-	Verson 1.2 % Subtitle or further description
+	%Verson 1.2 % Subtitle or further description
 	
 	\vspace*{3\baselineskip} % Whitespace under the subtitle
 	
@@ -115,8 +119,6 @@
 \tableofcontents
 \newpage
 \section{计算几何}
-\subsection{几何通用}
-\lstinputlisting[language=C++]{calculategeometry/几何通用.cpp}
 \subsection{平面几何通用}
 \lstinputlisting[language=C++]{calculategeometry/平面几何通用.cpp}
 \subsection{立体几何通用}
@@ -138,6 +140,8 @@
 \lstinputlisting[language=C++]{datastructure/表达式解析.cpp}
 \subsection{并查}
 \lstinputlisting[language=C++]{datastructure/并查.cpp}
+\subsection{可持久化并查集}
+\lstinputlisting[language=C++]{datastructure/可持久化并查集.cpp}
 \subsection{可持久化线段树}
 \lstinputlisting[language=C++]{datastructure/可持久化线段树.cpp}
 \subsection{轻重边剖分}
@@ -231,6 +235,8 @@ $\sum_{i\leq N}\lfloor \frac{N}{i}\rfloor=\sum_{i\leq N}d(i)$\par
 \lstinputlisting[language=C++]{math/SG函数.cpp}
 \subsection{矩阵乘法快速幂}
 \lstinputlisting[language=C++]{math/矩阵乘法快速幂.cpp}
+\subsection{线性规划}
+\lstinputlisting[language=C++]{math/线性规划.cpp}
 \subsection{线性基}
 \lstinputlisting[language=C++]{math/线性基.cpp}
 \subsection{线性筛}
@@ -271,6 +277,8 @@ $\sum_{i\leq N}\lfloor \frac{N}{i}\rfloor=\sum_{i\leq N}d(i)$\par
 \lstinputlisting[language=C++]{others/快速乘.cpp}
 \subsection{模拟退火}
 \lstinputlisting[language=C++]{others/模拟退火.cpp}
+\subsection{魔法求递推式}
+\lstinputlisting[language=C++]{others/魔法求递推式.cpp}
 \input{others/综合.tex}
 
 %\end{CJK*}
