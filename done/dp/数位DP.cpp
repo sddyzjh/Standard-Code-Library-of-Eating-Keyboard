@@ -1,57 +1,47 @@
 //HDU-2089 输出不包含4和62的数字的个数
-
-int dp[10][10];
-int k = 0;
-int dig[100];
-
-void init()
+#include <bits/stdc++.h>
+using namespace std;
+int dp[22][2][10];
+int digit[20];
+int dps(int pos, int lim, int pre, int alr) //pos:当前位置;lim:是否考虑位数;pre:前一位;alr:已经匹配?
 {
-    dp[0][0] = 1;
-    for (int i = 1; i <= 7; i++){
-        for (int j = 0; j < 10; j++){
-            for (int k = 0; k < 10; k++){
-                if (j != 4 && !(j == 6 && k == 2)){
-                    dp[i][j] += dp[i - 1][k];
-                }
-            }
-        }
+    if(pos < 0)
+    {
+        return alr;
     }
+    if(!lim && (dp[pos][alr][pre] != -1))
+    {
+        return dp[pos][alr][pre];
+    }
+    int result = 0;
+    int len = lim ? digit[pos] : 9;
+    for(int i = 0; i <= len; i++)
+    {
+        result += dps(pos - 1, lim && (i == len), i, alr || (pre == 6 && i == 2)||(i==4));
+    }
+    if(!lim)
+    {
+        dp[pos][alr][pre] = result;
+    }
+    return result;
 }
-
-int  solve (int num)
+int solve(int x)
 {
-    int ret = num, ans = 0;
-    memset(dig, 0, sizeof(dig));
-    k = 1;
-    while (ret > 0)
+    memset(dp, -1, sizeof(dp));
+    int length = 0;
+    while(x)
     {
-        dig[k++] = ret % 10;
-        ret /= 10;
+        digit[length++] = (x % 10);
+        x /= 10;
     }
-    for (int i = k; i > 0; i--)
-    {
-        for (int j = 0; j < dig[i]; j++)
-        {
-            if (!(j == 2 && dig[i + 1] == 6) && j != 4)
-            {
-                ans += dp[i][j];
-            }
-        }
-        if (dig[i] == 4 || (dig[i] == 2 && dig[i + 1] == 6))
-        {
-            break;
-        }
-    }
-    return ans;
+    return dps(length - 1, 1, 0, 0);
 }
-
-int main() {
-    int n, m;
-    init();
-    while (cin >> n >> m && (n + m))
+int main()
+{
+    int a,b;
+    while(scanf("%d%d",&a,&b),a||b)
     {
-        int ans = solve(m + 1) - solve(n);
-        cout << ans << endl;
+        printf("%d\n", b-a+1-slove(b>0?b:1)+slove((a-1)>0?(a-1):1));
     }
     return 0;
 }
