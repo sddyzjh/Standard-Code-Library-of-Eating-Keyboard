@@ -1,75 +1,49 @@
 /*
-	求多个串的LCS
+	init() 初始化
+	ins(w) 从后插入新点
+	getsz() 做出parent树，求出right集合大小=sz
 */
-struct node{
-	node *suf, *s[26], *next;
-	int val, w[11];
-}*r, *l, T[N<<1+1];
-node *point[N];
-char str[N];
-int n, len, k, tot;
-inline void add(int w){
-	node *p = l, *np = &T[tot++];
-	np->val = p->val+1;
-	np->next = point[np->val], point[np->val] = np;
-	while (p && !p->s[w])
-		p->s[w] = np, p = p->suf;
-	if (!p)
-		np->suf = r;
-	else{
-		node *q = p->s[w];
-		if (p->val+1 == q->val)
-			np->suf = q;
+struct SAM{
+	static const int K = 26;
+	int rt, la, nodes;
+	int len[N], n[N][K], pa[N], sz[N];
+	void init(){
+		nodes = 0;
+		rt = la = newnode(0);
+	}
+	int newnode(int pl){
+		int i = ++nodes;
+		len[i] = pl;
+		return i;
+	}
+	void ins(int w){
+		int p = la, np = newnode(len[p]+1);
+		la = np;
+		sz[np] = 1;
+		while(p && !n[p][w])n[p][w] = np, p = pa[p];
+		if(!p)pa[np] = rt;
 		else{
-			node *nq = &T[tot++];
-			memcpy(nq->s, q->s, sizeof q->s);
-			nq->val = p->val+1;
-			nq->next = point[p->val+1], point[p->val+1] = nq;
-			nq->suf = q->suf;
-			q->suf = nq;
-			np->suf = nq;
-			while (p && p->s[w] == q)
-				p->s[w] = nq, p = p->suf;
-		}
-	}
-	l = np;
-}
-int main(){
-	int i, j, now, L, res, ans(0), w;
-	node *p;
-	r = l = &T[tot++];
-	r->next = point[0], point[0] = r;
-	scanf("%s", str);
-	L = strlen(str);
-	for (i = 0;i < L; ++i)
-		add(str[i]-'a');
-	for (tot = 1;scanf("%s", str) != EOF; ++tot){
-		len = strlen(str);
-		p = r, now = 0;
-		for (j = 0;j < len; ++j){
-			w = str[j]-'a';
-			if (p->s[w])
-				p = p->s[w], p->w[tot] = max(p->w[tot], ++now);
+			int q = n[p][w];
+			if(len[q] == len[p]+1)pa[np] = q;
 			else{
-				while (p && !p->s[w])
-					p = p->suf;
-				if (!p)
-					p = r, now = 0;
-				else
-					now = p->val+1, p = p->s[w], p->w[tot] = max(p->w[tot], now);
+				int nq = newnode(len[p]+1);
+				memcpy(n[nq], n[q], sizeof(n[q]));
+				pa[nq] = pa[q];
+				pa[q] = pa[np] = nq;
+				while(p && n[p][w] == q)n[p][w] = nq, p = pa[p];
 			}
 		}
 	}
-	for (i = L;i >= 0; --i)
-		for (node *p = point[i];p;p = p->next){
-			res = p->val;
-			for (j = 1;j < tot; ++j){
-				res = min(p->w[j], res);
-				if (p->suf)
-					p->suf->w[j] = max(p->suf->w[j], p->w[j]);
-			}
-			ans = max(ans, res);
+	void getsz(){
+		rep(i,2,nodes)
+			adde(pa[i],i);
+		dfs(rt);
+	}
+	void dfs(int u){
+		for(int i = point[u];i;i=G[i].n){
+			int v = G[i].v;
+			dfs(v);
+			sz[u] += sz[v];
 		}
-	printf("%d\n", ans);
-	return 0;
-}
+	}
+}sam;
