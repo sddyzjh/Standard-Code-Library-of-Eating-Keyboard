@@ -1,41 +1,56 @@
-#define MAXN 100000     //字符串长度
-
-//da函数:s为输入的字符串,sa为结果数组,slen为s长度,m为字符串中字符的最大值+1
-//调用前应将s[slen]设为0,因此调用时slen为s长度+1
-
-//calHeight函数:返回sa中排名相邻的两个后缀的最长公共前缀
-
-int cmp(int *s, int a, int b, int l) {
-    return (s[a] == s[b]) && (s[a + l] == s[b + l]);
+/*
+	细节看main
+	最后结果存在p为下标的数组内
+*/
+int n;
+int a[N],v[N],h[N],sa[2][N],rk[2][N];
+int p,q,k;
+void init(){
+	SET(a,0);
+	SET(v,0);
+	SET(h,0);
+	SET(sa,0);
+	SET(rk,0);
 }
-
-int wa[MAXN], wb[MAXN], ws[MAXN], wv[MAXN];
-void da(int *s, int *sa, int slen, int m) {
-    int i, j, p, *x = wa, *y = wb, *t;
-    for (i = 0; i < m; i++) ws[i] = 0;
-    for (i = 0; i < slen; i++) ws[x[i] = s[i]]++;
-    for (i = 1; i < m; i++) ws[i] += ws[i - 1];
-    for (i = slen - 1; i >= 0; i--) sa[--ws[x[i]]] = i;
-    for (j = 1, p = 1; p < slen; j *= 2, m = p)
-    {
-        for (p = 0, i = slen - j; i < slen; i++) y[p++] = i;
-        for (i = 0; i < slen; i++) if (sa[i] >= j) y[p++] = sa[i] - j;
-        for (i = 0; i < slen; i++) wv[i] = x[y[i]];
-        for (i = 0; i < m; i++) ws[i] = 0;
-        for (i = 0; i < slen; i++) ws[wv[i]]++;
-        for (i = 1; i < m; i++) ws[i] += ws[i - 1];
-        for (i = slen - 1; i >= 0; i--) sa[--ws[wv[i]]] = y[i];
-        for (t = x, x = y, y = t, p = 1, x[sa[0]] = 0, i = 1; i < slen; i++)
-            x[sa[i]] = cmp(y, sa[i - 1], sa[i], j) ? p - 1 : p++;
-    }
+void calsa(int *sa,int *rk,int *SA,int *RK){
+	rep(i,1,n)v[rk[sa[i]]]=i;
+	repr(i,1,n)
+		if(sa[i]>k)
+			SA[v[rk[sa[i]-k]]--]=sa[i]-k;
+	rep(i,n-k+1,n)SA[v[rk[i]]--]=i;
+	rep(i,1,n)
+		RK[SA[i]]=RK[SA[i-1]]+(rk[SA[i-1]]!=rk[SA[i]]||rk[SA[i-1]+k]!=rk[SA[i]+k]);
 }
-
-//---------------------------------------------------------
-int rank[MAXN], height[MAXN];
-void calHeight(int *s, int *sa, int slen) {
-    int i, j, k = 0;
-    for (i = 1; i <= slen; i++) rank[sa[i]] = i;
-    for (i = 0; i < slen; height[rank[i++]] = k )
-        for (k ? k-- : 0, j = sa[rank[i] - 1]; s[i + k] == s[j + k]; k++);
+void getsa(){
+	p=0,q=1,k=1;
+	rep(i,1,n)v[a[i]]++;
+	rep(i,1,26)v[i]+=v[i-1];
+	rep(i,1,n)sa[p][v[a[i]]--]=i;
+	rep(i,1,n)
+		rk[p][sa[p][i]]=rk[p][sa[p][i-1]]+(a[sa[p][i]]!=a[sa[p][i-1]]);
+	for(k=1;k<n;k<<=1,swap(p,q))
+		calsa(sa[p],rk[p],sa[q],rk[q]);
 }
-//---------------------------------------------------------
+void geth(){
+	k=0;
+	rep(i,1,n)
+		if(rk[p][i]==1)h[rk[p][i]]=0;
+		else{
+			int j=sa[p][rk[p][i]-1];
+			while(a[i+k]==a[j+k])k++;
+			h[rk[p][i]]=k;
+			if(k>0)k--;
+		}
+}
+int main(){
+	while(T--){
+		init();
+		scanf("%s",str+1);
+		n = strlen(str+1);
+		rep(i,1,n)a[i]=str[i]-'a'+1;
+		getsa();
+		geth();
+		h[0] = h[1] = 0;h[n+1] = 0;
+	}
+	return 0;
+}
