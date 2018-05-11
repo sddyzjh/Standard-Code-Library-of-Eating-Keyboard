@@ -9,17 +9,17 @@
 int prime[N];
 int size;
 int is[N];
-int phi[N];//欧拉函数 
-int mu[N];//莫比乌斯函数 
-int minp[N];//最小质因子 
-int mina[N];//最小质因子次数 
-int d[N];//约数个数 
+int phi[N];
+int mu[N];
+int minp[N];
+int mina[N];
+int d[N];
 void getprime(int list){
 	SET(is,1);
 	mu[1] = 1;
 	phi[1] = 1;
 	is[1] = 0;
-	repab(i,2,list){
+	rep(i,2,list){
 		if(is[i]){
 			prime[++size] = i;
 			phi[i] = i-1;
@@ -28,7 +28,7 @@ void getprime(int list){
 			mina[i] = 1;
 			d[i] = 2;
 		}
-		rep(j,size){
+		rep(j,1,size){
 			if(i*prime[j]>list)
 				break;
 			is[i * prime[j]] = 0;

@@ -4,14 +4,12 @@
 	调用pamt(a,k)返回a^k
 */
 struct mat{
-	int n, m;
 	int c[MATN][MATN];
 };
 mat cheng(const mat &a, const mat &b){
 	mat w;
 	SET(w.c,0);
-	w.n = a.n, w.m = b.m;
-	Rep(i,a.n)Rep(j,b.m)Rep(k,a.m){
+	rep(i,0,MATN-1)rep(j,0,MATN-1)rep(k,0,MATN-1){
 		w.c[i][j] += (ll)a.c[i][k] * b.c[k][j] % MOD;
 		if(w.c[i][j]>MOD)w.c[i][j]-=MOD;
 	}
@@ -21,7 +19,7 @@ mat pmat(mat a, ll k){
 	mat i;
 	i.n = i.m = a.n;
 	SET(i.c,0);
-	Rep(j,a.n)
+	rep(j,0,MATN-1)
 		i.c[j][j] = 1;
 	while(k){
 		if(k&1)
