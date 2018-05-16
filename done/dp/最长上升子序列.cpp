@@ -1,33 +1,16 @@
-//使用lisDP查找,a为待查找串,b用于返回结果串,n为a的长度
-int dpSearch(int num, int low, int high)
-{
-	int mid;
-	while (low <= high)
-	{
-		mid = (low + high) / 2;
-		if (num >= b[mid]) low = mid + 1;
-		else high = mid - 1;
+//f[i]表示前缀LIS,g[i]表示长为i的IS的最小结尾数字
+int LIS(int *f, int *g){
+	memset(f,0,(n+1)*sizeof(int));
+	f[1] = 1;
+	memset(g,127,(n+1)*sizeof(int));
+	g[0] = -infi;
+	int nmax = 1;
+	g[nmax] = a[1];
+	rep(i,2,n){
+		int v = lower_bound(g,g+nmax+1,a[i])-g-1;
+		f[i] = v+1;
+		nmax = max(nmax, v+1);
+		g[v+1] = min(g[v+1], a[i]);
 	}
-	return low;
-}
-
-int lisDP(int* a,int* b,int n)
-{
-	int i, len, pos;
-	b[1] = a[1];
-	len = 1;
-	for (i = 2; i <= n; i++)
-	{
-		if (a[i] >= b[len])
-		{
-			len = len + 1;
-			b[len] = a[i];
-		}
-		else
-		{
-			pos = dpSearch(a[i], 1, len);
-			b[pos] = a[i];
-		}
-	}
-	return len;
+	return nmax;
 }
