@@ -1,6 +1,6 @@
-## Code-Library-of-HUST-Affiliated-Kindergarten
+# Code-Library-of-HUST-Affiliated-Kindergarten
 
-# 曾用队名List
+## 曾用队名List
 
 华科附属幼儿园/HUST Affiliated Kindergarten(张嘉辉 陈威宇 马思源)  
 
