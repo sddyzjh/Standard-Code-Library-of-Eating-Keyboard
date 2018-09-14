@@ -1,30 +1,24 @@
 /*
-	调用init(),且处理出dep数组后
-	调用lca(x,y)得到x,y的lca
+	调用lca_init()后
+	调用lca(u,v)得到u,v的lca
 */
-int p[M], f[N][M];
-void init(){
-	p[0] = 1;
-	rep(i,M-1){
-		p[i] = p[i-1]<<1;
-		rep(j,n)
-			if(f[j][i-1])
-				f[j][i] = f[f[j][i-1]][i-1]
-	}
+int fa[N][M];
+void lca_init(){
+	rep(k,1,M-1)rep(i,1,n)
+		fa[i][k] = fa[fa[i][k-1]][k-1];
 }
-int lca(int x,int y){
-	if(dep[x] > dep[y])
-		swap(x, y);
-	if(dep[x] < dep[y])
-		Rep(i,M)
-			if((dep[y] - dep[x]) & p[i])
-				y = f[y][i];
-	Repr(i,M)
-		if(f[x][i] != f[y][i]){
-			x = f[x][i];
-			y = f[y][i];
+int lca(int u,int v){
+	if(dep[u] < dep[v])
+		swap(u, v);
+	repr(i,0,M-1)
+		if(((dep[u] - dep[v])>>i) & 1)
+			u = fa[u][i];
+	repr(i,0,M-1)
+		if(fa[u][i] != fa[v][i]){
+			u = fa[u][i];
+			v = fa[v][i];
 		}
-	if(x != y)
-		return f[x][0];
-	return x;
+	if(u != v)
+		return fa[u][0];
+	return u;
 }

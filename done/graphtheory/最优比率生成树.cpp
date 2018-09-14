@@ -1,14 +1,3 @@
-#include<map>
-#include<cmath>
-#include<ctime>
-#include<queue>
-#include<cstdio>
-#include<vector>
-#include<bitset>
-#include<cstring>
-#include<iostream>
-#include<algorithm>
-#define ll long long 
 #define mod 1000000009
 #define inf 1000000000
 #define eps 1e-8
@@ -50,8 +39,7 @@ int main(){
 		for(int i=1;i<=n;i++)
 			scanf("%d%d%d",&x[i],&y[i],&z[i]);
 		double l=0,r=1000;
-		for(int i=1;i<=30;i++)
-		{
+		for(int i=1;i<=30;i++){
 			double mid=(l+r)/2;
 			cal(mid);
 			if(ans<0)r=mid;

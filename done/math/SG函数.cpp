@@ -1,17 +1,12 @@
 #define MAX 150 //最大的步数
-
 int step[MAX], sg[10500], steps;    //使用前应将sg初始化为-1
 //step:所有可能的步数，要求从小到大排序
 //steps:step的大小
 //sg:存储sg的值
-
-
-int getsg(int m)
-{
+int getsg(int m){
     int hashs[MAX] = {0};
     int i;
-    for (i = 0; i < steps; i++)
-    {
+    for (i = 0; i < steps; i++){
         if (m - step[i] < 0) {
             break;
         }
@@ -37,32 +32,22 @@ Array[]需要从小到大排序
 //获取sg表
 int SG[MAX], hashs[MAX];
 
-void init(int Array[], int n)
-{
+void init(int Array[], int n){
     int i, j;
     memset(SG, 0, sizeof(SG));
-    for (i = 0; i <= n; i++)
-    {
+    for (i = 0; i <= n; i++){
         memset(hashs, 0, sizeof(hashs));
-        for (j = 1; j <= Array[0]; j++)
-        {
+        for (j = 1; j <= Array[0]; j++){
             if (i < Array[j]) {
                 break;
             }
             hashs[SG[i - Array[j]]] = 1;
         }
-        for (j = 0; j <= n; j++)
-        {
-            if (hashs[j] == 0)
-            {
+        for (j = 0; j <= n; j++){
+            if (hashs[j] == 0){
                 SG[i] = j;
                 break;
             }
         }
     }
 }
-
-
-
-
-

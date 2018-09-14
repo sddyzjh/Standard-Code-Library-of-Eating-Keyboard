@@ -21,7 +21,7 @@ bool spfa(int s,int t){
 	queue<int>q;
 	SET(vis,0);
 	SET(pre,0);
-	repab(i,s,t)
+	rep(i,s,t)
 		dis[i]=infi;
 	dis[s]=0;
 	vis[s]=1;

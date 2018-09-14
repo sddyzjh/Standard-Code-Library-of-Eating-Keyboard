@@ -1,38 +1,22 @@
 //HDU 3507
 //给出n,m，求在n个数中分成任意段，每段的花销是(sigma(a[l],a[r])+m)^2，求最小值
 //http://acm.hdu.edu.cn/showproblem.php?pid=3507
-
-#include <stdio.h>
-#include <iostream>
-#include <string.h>
-#include <queue>
-using namespace std;
 const int MAXN = 500010;
-
 int dp[MAXN];
 int q[MAXN];
 int sum[MAXN];
-
 int head, tail, n, m;
-
-int getDP(int i, int j)
-{
+int getDP(int i, int j){
 	return dp[j] + m + (sum[i] - sum[j]) * (sum[i] - sum[j]);
 }
-
-int getUP(int j, int k)
-{
+int getUP(int j, int k){
 	return dp[j] + sum[j] * sum[j] - (dp[k] + sum[k] * sum[k]);
 }
-int getDOWN(int j, int  k)
-{
+int getDOWN(int j, int  k){
 	return 2 * (sum[j] - sum[k]);
 }
-
-int main()
-{
-	while (scanf("%d%d", &n, &m) == 2)
-	{
+int main(){
+	while (scanf("%d%d", &n, &m) == 2){
 		for (int i = 1; i <= n; i++)
 			scanf("%d", &sum[i]);
 		sum[0] = dp[0] = 0;
@@ -40,8 +24,7 @@ int main()
 			sum[i] += sum[i - 1];
 		head = tail = 0;
 		q[tail++] = 0;
-		for (int i = 1; i <= n; i++)
-		{
+		for (int i = 1; i <= n; i++){
 			while (head + 1 < tail &&  getUP(q[head + 1], q[head]) <= sum[i]*getDOWN(q[head + 1], q[head]))
 				head++;
 			dp[i] = getDP(i, q[head]);
@@ -53,4 +36,3 @@ int main()
 	}
 	return 0;
 }
-

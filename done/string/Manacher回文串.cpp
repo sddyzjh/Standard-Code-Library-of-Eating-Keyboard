@@ -1,10 +1,8 @@
 #define MAXM 20001
 //返回回文串的最大值
 //MAXM至少应为输入字符串长度的两倍+1
-
 int p[MAXM];
 char s[MAXM];
-
 int manacher(string str) {
     memset(p, 0, sizeof(p));
     int len = str.size();

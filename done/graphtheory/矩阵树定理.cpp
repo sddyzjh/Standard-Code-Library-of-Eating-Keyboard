@@ -11,18 +11,18 @@
 	有向图以i为根的树形图的数目=基尔霍夫矩阵去掉第i行和第i列的主子式的行列式的值(即Matrix-Tree定理不仅适用于求无向图生成树数目,也适用于求有向图树形图数目)
 */
 int det(int a[N][N], int n){
-	rep(i,n)
-		rep(j,n)
+	rep(i,1,n)
+		rep(j,1,n)
 			a[i][j]=(a[i][j]+mod)%mod;
 	ll ans=1,f=1;
-	rep(i,n){
-		repab(j,i+1,n){
+	rep(i,1,n){
+		rep(j,i+1,n){
 			ll A=a[i][i],B=a[j][i];
 			while(B!=0){
 				ll t=A/B;A%=B;swap(A,B);
-				repab(k,i,n)
+				rep(k,i,n)
 					a[i][k]=(a[i][k]-t*a[j][k]%mod+mod)%mod;
-				repab(k,i,n)
+				rep(k,i,n)
 					swap(a[i][k],a[j][k]);
 				f=-f;
 			}

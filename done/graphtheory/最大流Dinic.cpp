@@ -10,15 +10,15 @@ struct E{
 int point[N], D[N], cnt, S, T;
 void Ginit(){
 	cnt = 1;
-	SET(point,0);
+	fill(point,0,T+1);
 }
 void addedge(int u, int v, int f, int F){
 	G[++cnt] = (E){v, 0, f, point[u]}, point[u] = cnt;
 	G[++cnt] = (E){u, 0, F, point[v]}, point[v] = cnt;
 }
-queue<int> q;
 int BFS(){
-	SET(D,0);
+	queue<int> q;
+	fill(D,0,T+1);
 	q.push(S);
 	D[S] = 1;
 	while (!q.empty()){
@@ -28,6 +28,7 @@ int BFS(){
 				int v = G[i].v;
 				if (!D[v]){
 					D[v] = D[u] + 1;
+					if(v==T)return D[T];
 					q.push(v);
 				}
 			}
@@ -51,6 +52,7 @@ int Dinic(int u, int F){
 			}
 		}
 	}
+	if(!f)D[u]=0;
 	return f;
 }
 int maxflow(){

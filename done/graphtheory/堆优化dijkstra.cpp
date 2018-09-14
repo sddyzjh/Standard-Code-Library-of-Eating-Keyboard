@@ -8,16 +8,12 @@ struct qnode{
         return c>r.c;
     }
 };
-struct E{
-    int v,w,n;
-}G[M];
-int point[N], cnt;
 bool vis[N];
 int dist[N];
-void Dijkstra(int s){
-    SET(vis,0);
-    SET(dist,127);
-    dist[s]=0;
+void dij(int s){
+    fill(vis,0,n+1);
+    fill(dist,127,n+1); 
+	dist[s]=0;
     priority_queue<qnode> que;
     while(!que.empty())que.pop();
     que.push((qnode){s,0});
@@ -36,11 +32,4 @@ void Dijkstra(int s){
             }
         }
     }
-}
-void addedge(int u,int v,int w){
-    G[++cnt] = (E){v,w,point[u]}, point[u] = cnt;
-}
-void Ginit(){
-    cnt = 0;
-    SET(point,0);
 }

@@ -8,16 +8,16 @@ int n, m;
 int point[N], cnt;
 int low[N], dfn[N], belong[N], Stack[N];
 bool instack[N];
-int dfsnow, Stop, sccnum;
+int dfsnow, Stop, sccnum, num[N];
 struct E{
-	int u, v, nex;
+	int u, v, n;
 }G[M],G1[M];
 void tarjan(int u){
 	int v;
 	dfn[u] = low[u] = ++dfsnow;
 	instack[u] = 1;
 	Stack[++Stop] = u;
-	for (int i = point[u];i;i = G[i].nex){
+	for (int i = point[u];i;i = G[i].n){
 		v = G[i].v;
 		if (!dfn[v]){
 			tarjan(v);
@@ -33,19 +33,19 @@ void tarjan(int u){
 			v = Stack[Stop--];
 			instack[v] = 0;
 			belong[v] = sccnum;
-			num[sccnum][++num[sccnum][0]] = v;
+			num[sccnum]++;
 		}
 		while (v != u);
 	}
 }
 void Ginit(){
 	cnt = 0;
-	SET(point,0);
+	fill(point,0,n+1);
 }
 void SCC(){
 	Stop = sccnum = dfsnow = 0;
-	SET(dfn, 0);
-	rep(i,n)
+	fill(dfn, 0, n+1);
+	rep(i,1,n)
 		if (!dfn[i])
 			tarjan(i);
 }
@@ -58,8 +58,8 @@ void addedge2(int a, int b){
 int degre[N];
 void suodian(){
 	Ginit();
-	SET(degre,0);
-	rep(i,m)
+	fill(degre,0 ,n+1);
+	rep(i,1,m)
 		if (belong[G[i].u] != belong[G[i].v]){
 			addedge2(belong[G[i].u], belong[G[i].v]);
 			degre[belong[G[i].v]]++;

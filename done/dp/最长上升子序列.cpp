@@ -1,4 +1,4 @@
-//f[i]表示前缀LIS,g[i]表示长为i的IS的最小结尾数字
+//f[i]表示前缀LIS,g[i]表示长为i的LIS的最小结尾数字
 int LIS(int *f, int *g){
 	memset(f,0,(n+1)*sizeof(int));
 	f[1] = 1;
