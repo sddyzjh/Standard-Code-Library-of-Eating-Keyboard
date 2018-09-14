@@ -7,9 +7,20 @@
 \usepackage{geometry}
  \usepackage{minted}
 \geometry{papersize={210mm,297mm}}
-\geometry{left=2cm,right=2cm,top=1.5cm,bottom=1.5cm}
+\geometry{left=1cm,right=1cm,top=0.5cm,bottom=0.5cm}
+
+\setminted[cpp]{
+	fontsize=\normalsize,
+	breaklines=true,
+	linenos=true,
+	style=manni,
+	frame=single,
+	framesep=1mm,
+	framerule=0.3pt,
+	numbersep=1mm
+}
  \setCJKmainfont{微软雅黑}
-\setmonofont{Consolas}
+\setmonofont{Isotype}
 \begin{document}
 %\begin{CJK*}{UTF8}{song}
 \newpage
@@ -74,16 +85,6 @@
 \end{titlepage}
 %remove leading numbers in table of contents
 \setcounter{secnumdepth}{0}
-
-\setminted[cpp]{
-	breaklines=true,
-	linenos=true,
-	style=manni,
-	frame=single,
-	framesep=1mm,
-	framerule=0.3pt,
-	numbersep=1mm
-}
 \tableofcontents
 \newpage
 \section{计算几何}
