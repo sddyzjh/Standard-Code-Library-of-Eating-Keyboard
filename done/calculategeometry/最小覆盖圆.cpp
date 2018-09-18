@@ -24,8 +24,8 @@ point CC(point const& a,point const& b,point const& c)
 int n;
 point a[1005000];
 
-struct Resault{ db x,y,r; };
-Resault MCC()
+struct Result { db x,y,r; };
+Result MCC()
 {
     if(n==0) return {0, 0, 0};
     if(n==1) return {a[0].x, a[0].y, 0};
@@ -34,17 +34,17 @@ Resault MCC()
     for(int i=0;i<n;i++) swap(a[i], a[rand()%n]); // 随机交换.
     
     point O; db R = 0.0;
-    for(int i=2; i<n; i++) if(O(a[i]).len() >= R+eps2)
+    rep(i, 2, n-1) if(O(a[i]).len() >= R+eps2)
     {
         O=a[i];
         R=0.0;
         
-        for(int j=0; j<i; j++) if(O(a[j]).len() >= R+eps2)
+        rep(j, 0, i-1) if(O(a[j]).len() >= R+eps2)
         {
             O=(a[i] + a[j]) * 0.5;
             R=a[i](a[j]).len() * 0.5;
             
-            for(int k=0; k<j; k++) if(O(a[k]).len() >= R+eps2)
+            rep(k, 0, j-1) if(O(a[k]).len() >= R+eps2)
             {
                 O = CC(a[i], a[j], a[k]);
                 R = O(a[i]).len();

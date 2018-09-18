@@ -13,23 +13,23 @@ point a[105000];
 point stk[105000]; int st;
 
 bool operator<(point const& a, point const& b) { return eq(a.y, b.y) ? a.x < b.x : a.y < b.y; }
-// 使用 >> 则取凸包上的点.
-// 使用 >>= 不取凸包上的点.
+// 使用 >= eps 则取凸包上的点.
+// 使用 >= -eps 不取凸包上的点.
 void Graham()
 {
     sort(a,a+n);
     int g = (int)(unique(a, a+n) - a);
     st=0;
     
-    for(int i=0;i<g;i++)
+    rep(i, 0, g-1)
     {
-        while(st>1 && (stk[st-2](stk[st-1]) >> stk[st-1](a[i]))) st--;
+        while(st>1 && stk[st-2](stk[st-1]) * stk[st-1](a[i]) >= eps) st--;
         stk[st++]=a[i];
     }
     int p=st;
-    for(int i=g-2;i>=0;i--)
+    repr(i, 0, g-2)
     {
-        while(st>p && (stk[st-2](stk[st-1]) >> stk[st-1](a[i]))) st--;
+        while(st>p && stk[st-2](stk[st-1]) * stk[st-1](a[i]) >= eps) st--;
         stk[st++]=a[i];
     }
 }

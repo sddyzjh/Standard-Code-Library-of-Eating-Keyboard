@@ -18,7 +18,6 @@ struct node
     node*f;          // Fail 指针.
     char v;          // 当前节点代表字符(父节点指向自己的边代表的字符).
     bool leaf;       // 是否是某个字符串的终点. 注意该值为true不一定是叶子.
-    node() { } // 保留初始化.
 }
 pool[mxn]; node*pt=pool;
 node* newnode() { memset(pt, 0, sizeof(node)); return pt++; }
@@ -40,7 +39,7 @@ struct Trie
         for(int i=0;i<len;i++)
         {
             int v = g[i]-'a';
-            if(x->s[v] == NULL)
+            if(!x->s[v])
             {
                 x->s[v] = newnode();
                 x->s[v]->v = v;
@@ -65,11 +64,9 @@ struct Trie
         
         while(qh != qt)
         {
-            node*cur = qc[qh];
-            node*fp = qf[qh];
-            qh++;
+            node*cur = qc[qh], *fp = qf[qh]; qh++;
             
-            while(fp != root && fp->s[cur->v] == NULL) fp = fp->f;
+            while(fp != root && !fp->s[cur->v]) fp = fp->f;
             if(fp->s[cur->v]) fp = fp->s[cur->v];
             cur->f = fp;
             
@@ -82,7 +79,7 @@ struct Trie
     // 暴力判定.
     node* GetTrans(node*x, int v)
     {
-        while(x != root && x->s[v] == NULL) x = x->f;
+        while(x != root && !x->s[v]) x = x->f;
         if(x->s[v]) x = x->s[v];
         return x;
     }
@@ -93,7 +90,7 @@ struct Trie
     {
         if(x->s[v]) return x->trans[v] = x->s[v];
         
-        if(x->trans[v] == NULL)
+        if(!x->trans[v])
         {
             if(x == root) return root;
             return x->trans[v] = GetTrans(x->f, v);
