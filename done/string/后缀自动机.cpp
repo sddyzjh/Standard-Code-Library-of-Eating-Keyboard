@@ -14,6 +14,9 @@ struct SAM{
 	int newnode(int pl){
 		int i = ++nodes;
 		len[i] = pl;
+		pa[i] = 0;
+		sz[i] = 0;
+		SET(n[i],0);
 		return i;
 	}
 	void ins(int w){
