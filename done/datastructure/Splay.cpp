@@ -95,7 +95,7 @@ struct SplayTree
         return r;
     }
 
-    node* FindRank(int k) // 查找排名为ｋ的节点.
+    node* FindRank(int k) // 查找排名为k的节点.
     {
         node *x=root, *y=root;
         while(x!=nil)
@@ -109,7 +109,7 @@ struct SplayTree
         return x;
     }
 
-    // 排名从１开始.
+    // 排名从1开始.
     int GetRank(node*x) { return splay(x)->s[0]->cnt+1; }
     
     node*Delete(node*x)

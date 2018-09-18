@@ -19,8 +19,8 @@ Hash GetHash(int* c, int l, int r)
     Hash v = {0, 0};
     rep(i, l, r)
     {
-        v.x = (int)(((((ll)v.x * sysnum1) % hashmod1) + c[i] + 1) % hashmod1);
-        v.y = (int)(((((ll)v.y * sysnum2) % hashmod2) + c[i] + 1) % hashmod2);
+        v.x = (((1LL * v.x * sysnum1) % hashmod1) + c[i] + 1) % hashmod1;
+        v.y = (((1LL * v.y * sysnum2) % hashmod2) + c[i] + 1) % hashmod2;
     }
     return v;
 }
@@ -28,8 +28,8 @@ Hash GetHash(int* c, int l, int r)
 Hash MergeHash(Hash left, Hash right, int rightLen)
 {
     return Hash {
-        (int)(((ll)left.x * hx[rightLen] % hashmod1  + right.x) % hashmod1),
-        (int)(((ll)left.y * hy[rightLen] % hashmod2  + right.y) % hashmod2),
+        (int)((1LL * left.x * hx[rightLen] % hashmod1  + right.x) % hashmod1),
+        (int)((1LL * left.y * hy[rightLen] % hashmod2  + right.y) % hashmod2),
     };
 }
 /// 哈希计算初始化.

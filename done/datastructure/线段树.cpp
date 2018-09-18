@@ -1,6 +1,7 @@
 /// 线段树.
 /// 带乘法和加法标记.
 /// 只作为样例解释.
+/// 线段树池子开到节点数的五倍.
 
 /// mxn: 区间节点数. 线段树点数是它的四倍.
 const int mxn = 105000;
@@ -18,9 +19,9 @@ ll MOD;
 
 #define L (x<<1)
 #define R (x<<1|1)
-ll t[mxn<<2]; // 当前真实值.
-ll tagm[mxn<<2]; // 乘法标记. 
-ll taga[mxn<<2]; // 加法标记. 在乘法之后应用. 
+ll t[mxn * 5]; // 当前真实值.
+ll tagm[mxn * 5]; // 乘法标记. 
+ll taga[mxn * 5]; // 加法标记. 在乘法之后应用. 
 void pushtag(int x,int l,int r)
 {
     if(tagm[x]==1 && taga[x]==0) return;
@@ -43,7 +44,7 @@ void pushtag(int x,int l,int r)
 /// 以下程序可以保证在Update之前该节点已经没有标记.
 void update(int x) { t[x] = (t[L] + t[R]) % MOD; }
 
-void build(int x=1,int l=1,int r=n) // 初始化.
+void build(int x=1,int l=0,int r=n) // 初始化.
 {
     taga[x] = 0; tagm[x] = 1;
     if(l==r) { t[x] = a[l] % MOD; return; }
@@ -53,7 +54,7 @@ void build(int x=1,int l=1,int r=n) // 初始化.
 }
 
 int cl,cr; ll cv; int ct;
-void Change(int x=1,int l=1,int r=n)
+void Change(int x=1,int l=0,int r=n)
 {
     if(cr<l || r<cl) return;
     if(cl<=l && r<=cr) // 是最终访问节点, 修改真实值并打上标记.
@@ -80,7 +81,7 @@ void Modify(int l,int r,ll v,int type)
 { cl=l; cr=r; cv=v; ct=type; Change(); }
 
 int ql,qr;
-ll Query(int x=1,int l=1,int r=n)
+ll Query(int x=1,int l=0,int r=n)
 {
     if(qr<l || r<ql) return 0;
     if(ql<=l && r<=qr) return t[x];
@@ -91,12 +92,11 @@ ll Query(int x=1,int l=1,int r=n)
 ll Getsum(int l,int r)
 { ql=l; qr=r; return Query(); }
 
-void Output(int x=1,int l=1,int r=n,int depth=0)
+void Output(int x=1,int l=0,int r=n,int depth=0)
 {
     printf("[%d] [%d,%d] t:%lld m:%lld a:%lld\n",x,l,r,t[x],taga[x],tagm[x]);
     if(l==r) return;
-    int mid=(l+r)>>1;
-    Output(L,l,mid); Output(R,mid+1,r);
+    int mid=(l+r)>>1; Output(L,l,mid); Output(R,mid+1,r);
 }
 
 int main()
@@ -125,3 +125,48 @@ int main()
     return 0;
 }
 
+//////////////////////////////////////////////////////////////////////////
+
+/// 线段树 II.
+/// 求区间中数字的平方和与和的平方.
+/// 可以用来求区间中数字的两两之积, 它等于 二分之一倍和的平方减去平方之和. 0.5 * ((sigma{ai})^2 - sigma{ai^2})
+
+struct Num
+{
+    static const int mod = 1e9+7;
+    int v;
+    Num() { }
+    Num(int const& x) : v(x) { }
+    Num operator+(Num const& a) const { return { (a.v + v) % mod }; }
+    Num operator-(Num const& a) const { return { (v - a.v + mod) % mod }; }
+    Num operator*(Num const& a) const { return { (int)((1LL * a.v * v) % mod) }; }
+};
+
+struct TD   /// 线段树数据池子.
+{
+    Num sum;    /// 区间和.
+    Num sqs;    /// 区间每个数平方的和.
+    Num add;    /// 区间加标记.
+} t[mxn * 5];
+
+inline void pushtag(int x, int l, int r)
+{
+    if(t[x].add.v == 0) return;
+    int mid = (l + r) >> 1;
+    
+    Num v = t[x].add; t[x].add = 0;
+    
+    t[L].add = t[L].add + v;
+    t[L].sqs = t[L].sqs + t[L].sum * v * 2 + v * v * (mid - l + 1);
+    t[L].sum = t[L].sum + v * (mid - l + 1);
+    
+    t[R].add = t[R].add + v;
+    t[R].sqs = t[R].sqs + t[R].sum * v * 2 + v * v * (r - mid);
+    t[R].sum = t[R].sum + v * (r - mid);
+}
+
+inline void upd(int x,int l,int r)
+{
+    t[x].sum = t[L].sum + t[R].sum;
+    t[x].sqs = t[L].sqs + t[R].sqs;
+}
