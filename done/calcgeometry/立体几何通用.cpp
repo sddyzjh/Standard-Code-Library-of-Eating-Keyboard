@@ -30,64 +30,45 @@ pt operator*(pt const& a, pt const& b)
 db operator&(pt const& a, pt const& b)
 { return a.x * b.x + a.y * b.y + a.z * b.z; }
 
-bool operator==(pt const& a, pt const& b)
-{ return eq(a.x, b.x) && eq(a.y, b.y) && eq(a.z, b.z); }
+// 点 T 到直线 AB 的投影点.
+pt projection(pt const& A, pt const& B, pt const& T)
+{ return A + (A(B).norm() & A(T)) * A(B).norm(); }
 
-
-// ============================== 线段 ===============================
-struct segment
+// 直线 A + lm * S 和 B + mu * T 的距离.
+db dist(pt const& A, pt const& S, pt const& B, pt const& T)
 {
-    pt from,to;
-    segment() : from(), to() { }
-    segment(pt const& a, pt const& b) : from(a), to(b) { }
-    
-    pt dir() const { return to - from; } // 方向向量,未标准化.
-    db len() const { return dir().len(); } // 长度.
-    db len2() const { return dir().len2(); }
-    
-    // 点在线段上.
-    bool overlap(pt const& v) const
-    { return eq(from(to).len(), v(from).len() + v(to).len()); }
-    
-    pt projection(pt const& p) const // 点到直线上的投影.
-    {
-        db h2 = abs((dir() * from(p)).len2()) / len2();
-        db r = sqrt(from(p).len2() - h2);
-        if(eq(r, 0)) return from;
-        if((from(to) & from(p)) < 0) return from + from(to).norm() * (-r);
-        else return from + from(to).norm() * r;
-    }
-    
-    pt nearest(pt const& p) const // 点到线段的最近点.
-    {
-        pt g = projection(p);
-        if(overlap(g)) return g;
-        if(g(from).len() < g(to).len()) return from;
-        return to;
-    }
-    
-    pt nearest(segment const& x) const // 线段x上的离本线段最近的点.
-    {
-        db l = 0.0, r = 1.0;
-        while(r - l > eps)
-        {
-            db delta = r - l;
-            db lmid = l + 0.4 * delta;
-            db rmid = l + 0.6 * delta;
-            pt lp = x.interpolate(lmid);
-            pt rp = x.interpolate(rmid);
-            pt lnear = nearest(lp);
-            pt rnear = nearest(rp);
-            if(lp(lnear).len2() > rp(rnear).len2()) l = lmid;
-            else r = rmid;
-        }
-        return x.interpolate(l);
-    }
-    
-    pt interpolate(db const& p) const { return from + p * dir(); }
-};
+    if((S * T).len() < eps) { return (A(B) * S).len() / S.len(); }
+    return abs(A(B) & (S * T).norm());
+}
 
-bool operator/(segment const& a, segment const& b) // 平行 (零向量平行于任意向量).
+// 直线 A + lm * S 和 B + mu * T 上的最近点对.
+// first 在 A + lm * S 上, second 在 B + mu * T 上.
+pair<pt,pt> closest(pt const& A, pt const& S, pt const& B, pt const& T)
 {
-    return eq((a.dir() * b.dir()).len(), 0);
+    if((S * T).len() < eps) { return {A, projection(B, T, A)}; }
+    pt X = (S * T).norm();
+    pt Z = S.norm();
+    pt Y = Z * X;
+    pt b = { A(B) & X, A(B) & Y, A(B) & Z };
+    pt t = { 0, T & Y, T & Z };
+    db mu = - b.y / t.y;
+    db lm = (b.z + mu * t.z) / S.len();
+    return { A + lm * S, B + mu * T };
+}
+
+// 点 T 在直线 AB 上.
+bool contains(pt const& A, pt const* B, pt const& T)
+{ return (A(B).norm() * T).len() < eps; }
+
+// 点 T 在线段 AB 上.
+bool overlap(pt const& A, pt const& B, pt const& T)
+{ return (A(B) & A(T)) > -eps && (B(A) & B(T)) > -eps && (A(B).norm() * T).len() < eps; }
+
+// 点 T 到线段 AB 的最近点.
+pt nearest(pt const& A, pt const& B, pt const& T)
+{
+    pt G = projection(T);
+    if(overlap(A, B, G)) return G;
+    if(G(A).len() < G(B).len()) return A;
+    return B;
 }
