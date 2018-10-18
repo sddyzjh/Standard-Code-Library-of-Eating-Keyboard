@@ -35,6 +35,16 @@ $\prod_{n=1}^{\infty}{(1-x^{n})}=\sum_{n=0}^{\infty}{(-1)^{n}(1-x^{2n+1})x^{n(3n
 半径为 $r$ , 圆心角为 $\theta$ 的扇形重心与圆心的距离为 $\frac{4r\sin(\theta/2)}{3\theta}$ \par
 半径为 $r$ , 圆心角为 $\theta$ 的圆弧重心与圆心的距离为 $\frac{4r\sin^3(\theta/2)}{3(\theta-\sin(\theta))}$ \par
 
+\subsection{曼哈顿距离与切比雪夫距离}
+曼哈顿距离:\par
+$dis = |x1-x2|+|y1-y2|$\par
+切比雪夫距离:\par
+$dis = max(|x1-x2|,|y1-y2|)$\par
+manhattan to chebyshev\par
+$(x,y) \rightarrow (x+y,x-y)$\par
+chebyshev to manhattan\par
+$(x,y) \rightarrow (\frac{x+y}{2},\frac{x-y}{2})$\par
+
 \subsection{第二类 Bernoulli number}
 $B_m = 1 - \sum_{k=0}^{m-1}{\binom{m}{k}\frac{B_{k}}{m-k+1}}$\par
 $S_m(n) = \sum_{k=1}^{n}{k^{m}} = \frac{1}{m+1}\sum_{k=0}^{m}{\binom{m+1}{k}B_{k}n^{m+1-k}}$\par
