@@ -1,0 +1,82 @@
+
+\subsection{常见积性函数}
+
+单位函数$e(x)= \begin{cases}
+	1,x=1 \\ 0,x>1
+\end{cases}$\par
+
+常函数$I(x)=1$\par
+
+幂函数$id(x)=x^k$\par
+
+欧拉函数$\varphi(x)=x\prod_{p|x}(1-\frac{1}{p})$\par
+
+$n\geq 2$时$\varphi(n)$为偶数\par
+
+莫比乌斯函数$\mu(x)=\begin{cases}
+	1,x=1\\(-1)^k,x=p_1p_2...p_k \\ 0,others
+\end{cases}$\par
+
+$\sigma_k(n) = \Sigma_{d|n}d^k$\par
+
+$\sigma_k(n)=\Pi_{i=1}^{num}\frac{(p_i^{a_i+1})^k-1}{p_i^k-1}$\par
+
+\subsection{常用公式}
+
+$\Sigma_{d|n} \varphi (n)=n\rightarrow \varphi(n)=n-\Sigma_{d|n,d<n}$\par
+
+$[n=1]=\Sigma_{d|n}\mu(d)$排列组合后二项式定理转换即可证明\par
+
+$n=\Sigma_{d|n}\varphi(d)$将$\frac{i}{n}(1\leq i\leq n)$化为最简分数统计个数即可证明\par
+
+\subsection{狄利克雷卷积}
+
+$h(n)=\sum_{d|n}f(d)g(\frac{n}{d})$称为f和g的狄利克雷卷积，也可以理解为$h(n)=\sum_{ij=n}f(i)g(j)$\par
+
+两个积性函数的狄利克雷卷积仍为积性函数\par
+
+狄利克雷卷积满足交换律和结合律\par
+
+\subsection{莫比乌斯反演}
+
+$f(n)=\sum_{d|n}g(d)\Rightarrow g(n)=\sum_{d|n}\mu(d)*f(\frac{n}{d})$\par
+即$f=g*I \Leftrightarrow g=\mu*f$\par
+$\mu*I=e$\par
+$f=g*I \Rightarrow \mu*f = g*(\mu*I)=g*e=g$\par
+$g=\mu*f \Rightarrow f=g*I$\par
+
+$F(n)=\sum_{n|d}f(d)\Rightarrow f(n)=\sum_{n|d}\mu(\frac{n}{d})*F(d)$\par
+
+$f(n)=\sum_{d|n}\phi(d)\Rightarrow \phi(n)=\sum_{d|n}\mu(d)f(\frac{n}{d})=\sum_{d|n}\mu(d)\frac{n}{d}$\par
+
+\subsection{常用等式}
+
+$\varphi = \mu * id$\par
+
+$\varphi * I = id$\par
+
+$\sum_{d|N}\phi(d)=N$\par
+
+$\sum_{i\leq N}i*[(i,N)=1]=\frac{N*\phi(N)}{2}$\par
+
+$\sum_{d|N}\frac{\mu(d)}{d}=\frac{\phi(N)}{N}$\par
+
+常用代换\par
+
+$\sum_{d|N}\mu(d)=[N=1]$\par
+
+考虑每个数的贡献\par
+
+$\sum_{i\leq N}\lfloor \frac{N}{i}\rfloor=\sum_{i\leq N}d(i)$\par
+
+\subsection{Pell方程}
+
+形如$x^2-dy^2=1$的方程\par
+
+当d为完全平方数时无解\par
+
+假设$(x_0,y_0)$为最小正整数解\par
+
+$x_n = x_{n-1} \times x_0 + d \times y_{n-1} \times y_0$\par
+
+$y_n = x_{n-1} \times y_0 + y_{n-1} \times x_0$

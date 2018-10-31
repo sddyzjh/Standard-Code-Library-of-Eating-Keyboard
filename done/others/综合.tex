@@ -74,6 +74,11 @@ $C(n,m) mod p = C(n mod p, m mod p) * C(n / p, m / p),p$是质数\par
 \subsection{欧拉示性数定理}
 对平面图$V-E+F=2$\par
 
+\subsection{最值反演(MinMax容斥)}
+$ max\{S\}=\sum_{T\subseteq S} (−1)^{|T|−1}min\{T\} $\par
+扩展到期望\par
+$ E[max\{S\}]=\sum_{T\subseteq S} (−1)^{|T|−1}E[min\{T\}] $\par
+
 \subsection{Polya定理}
 设对$n$个对象用$m$种颜色： ${\displaystyle b_{1},b_{2},\cdots ,b_{m}}$着色。\par
 设${\displaystyle m^{c(p_{i})}=(b_{1}+b_{2}+\cdots +b_{m})^{c_{1}(p_{i})}(b_{1}^{2}+b_{2}^{2}+\cdots +b_{m}^{2})^{c_{2}(p_{i})}\cdots (b_{1}^{n}+b_{2}^{n}+\cdots +b_{m}^{n})^{c_{n}(p_{i})}}$，其中${\displaystyle c_{j}(p_{i})}$表示置换群中第i个置换循环长度为j的个数。\par
