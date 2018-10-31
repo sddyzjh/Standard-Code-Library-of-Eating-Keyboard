@@ -27,12 +27,11 @@ inline int CRT(int r1,int r2){
 	return a%MOD;
 }
 int mul(int x, int y, int mod){
-	ll z = 1LL*x*y;
-	return z-z/mod*mod;
+	return (ll)x*y%mod;
 }
 int add(int x, int y, int mod){
 	x += y;
-	if(x >= mod)x -= mod;
+	if(x >= mod)return (x-mod);
 	return x;
 }
 const int NUM = 20;
