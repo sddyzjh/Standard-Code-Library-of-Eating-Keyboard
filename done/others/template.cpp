@@ -26,7 +26,8 @@ void pr(const ll &x){printf("%lld", x);}
 void pr(const ull &x){printf("%llu", x);}
 void pr(const db &x){printf("%.10lf", x);}
 void pr(const ld &x){printf("%.10Lf", x);}
-void pr(const char *x){printf("%s", x);}
+void pr(const char* const &x){printf("%s", x);}
+void pr(char* const &x){printf("%s", x);}
 void pr(const char &x){printf("%c", x);}
 template<typename T, typename... Args> void pr(T const& v, Args const& ... args) { pr(v); pr(' '); pr(args...); }
 
